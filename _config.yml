@@ -119,7 +119,7 @@ sharing:
 comments:
   provider: disqus
   disqus:
-    shortname: harlinc # the Disqus shortname for the site
+    shortname: kitian616-github-io # the Disqus shortname for the site
 
 ## => Pageview
 ##############################
