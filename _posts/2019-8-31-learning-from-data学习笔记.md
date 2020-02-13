@@ -211,20 +211,24 @@ A:no，通常是直接或间接估计的。
 教授说严谨的证明有6页之多，但有必要解释清楚其中的一些关键，以便于理解详细的证明。
 
 需要解释清楚三件事：
-
+<center>
 <img src="https://raw.githubusercontent.com/C-Harlin/MarkDownPhotos/master/learning%20from%20data/lfd_16.png" width="50%">
+</center>
+
 一是，我们知道$M$是假设没有重合，但生长函数是怎么和重合扯上关系的呢？
 <!--我们知道用M会有重合，而生长函数比较小，他能处理重合的问题，但具体是怎么和重合扯上关系的呢？51:24开始讲解-->
 
 二是，生长函数针对的是$E_{in}$，但和整个空间联系的是$E_{out}$。
 <!--生长函数针对的和$E_{in}，而Hoeffding不等式针对的是$E_{out}$-->
 
-三是把上述两点组合起来得到结论。
+三是，把上述两点组合起来得到结论。
 
 
 通过这张图可以形象地理解：
-
+<center>
 <img src="https://raw.githubusercontent.com/C-Harlin/MarkDownPhotos/master/learning%20from%20data/lfd_17.png" width="50%">
+</center>
+
 图(a)的长方形表示整个数据空间，其中的点表示采样数据（$x_1,x_2,\cdots,x_N$）。如果当前假设在这个点上表现为bad event，则被涂成红色。由Hoeffding不等式保证bad events的区域（图(a)中的红色区域）较小。
 
 
@@ -243,12 +247,13 @@ A:no，通常是直接或间接估计的。
 具体来说，Hoeffding之所以会变得如此松弛，是因为我们使用了多个假设（不同的假设对应着不同的罐子），并给出最差的那个需要满足的上界。现在换一个思路，如果只从一个罐子中两次采样，我们有理由相信这两次采样数据之间的经验误差是有联系的（比如我们对3000人做民调，再对另外不同的3000人做民调，我们有理由相信两次结果在很大概率上相近），这种联系很像只做一次采样的经验误差和泛化误差的那种联系。
 但是需要知道的是，一旦我们换成这种多次采样的思路，那么数据就从整个数据空间变到了有限点集上，而有限点集就能用$dichotomy$来处理。
 这是阅读详细证明需要知道的一点。
-
+<center>
 <img src="https://raw.githubusercontent.com/C-Harlin/MarkDownPhotos/master/learning%20from%20data/lfd_18.png" width="50%">
-
+</center>
 最后是将两点组合到一起：
-
+<center>
 <img src="https://raw.githubusercontent.com/C-Harlin/MarkDownPhotos/master/learning%20from%20data/lfd_19.png" width="50%">
+</center>
 图中的第一个公式是“not quite”的，因为用$m_{\mathcal{H}}(N)$替换$M$的想法是没问题的，但具体换的时候要对细节的地方做修改，于是就有了第二个式子。
 
 ## 第七课：VC维
@@ -257,9 +262,9 @@ A:no，通常是直接或间接估计的。
 数值上等于$break point-1$（假设这个数量为n，不是说对所有n个点的数据集都能打散，而是至少有一组数据集能够打散），教授解释VC维和break point的区别仅在于一个是从正面描述最多能打散的数量，另一个是从反面描述达到多少之后就不能打散了。
 
 然后证明了感知机的VC维等于其参数的个数，并解释对于感知机而言，参数的个数可以代表自由度，并举了一个特例来说明VC维的数量度量的是有效参数的个数。
-
+<center>
 <img src="https://raw.githubusercontent.com/C-Harlin/MarkDownPhotos/master/learning%20from%20data/lfd_20.png" width="50%">
-
+</center>
 对于较复杂的模型来说，确定VC维是件困难的事情，但可以通过模型的自由度来近似得到VC维的上界。这也就是为什么对神经网络而言，通常取$d(\mathrm{VC})=O(\mathrm{VD})$。
 
 回到VC不等式来研究样本数量$N$随$d_{\mathrm{VC}}$的变化。
@@ -270,9 +275,9 @@ A:no，通常是直接或间接估计的。
 $$ m_{\mathcal{H}}(N)\leq \left(\frac{eN}{d}\right)^d $$
 
 最后给出了泛化界：
-
+<center>
 <img src="https://raw.githubusercontent.com/C-Harlin/MarkDownPhotos/master/learning%20from%20data/lfd_21.png" width="50%">
 
 <img src="https://raw.githubusercontent.com/C-Harlin/MarkDownPhotos/master/learning%20from%20data/lfd_22.png" width="50%">
-
+</center>
 
