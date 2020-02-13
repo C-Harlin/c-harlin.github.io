@@ -49,45 +49,48 @@ $$ \mathbb{P}\left[\left|E_{\mathrm{in}}-E_{\mathrm{out}}\right|>\epsilon\right]
 
 由于现实中的数据不可能覆盖到所有特征，因此会出现特征相同的两个实例标签却不同的情况。
 
-也正因为此，学习的目标不再是$y=f(x)$（unknown target function），而是$P(y|x)$（target distribution），即对于给定数据$x$，有多大可能是$y$。
- 
+也正因为此，学习的目标不再是$y=f(x)$（unknown target function），而是$P(y\|x)$（target distribution），即对于给定数据$x$，有多大可能是$y$。
+
  下图是新的有监督学习框架。
  <img src="https://raw.githubusercontent.com/C-Harlin/MarkDownPhotos/master/learning%20from%20data/lfd_4.png" width="80%" height="80%">
 
-目前我们已经知道了，学习是可行的，即：$$ E_{in}(g)\approx E_{out}(g) $$
- 但这还不够。我们期望的是$g\approx f$，即：$$ E_{out}(g)\approx 0 $$
- 
+目前我们已经知道了，学习是可行的，即：$$ E_{in}(g)\approx E_{out}(g) $$。
+但这还不够。我们期望的是$g\approx f$，即：$$ E_{out}(g)\approx 0 $$
+
 ## 第五课
 从考虑了多种假设的Hoeffding不等式可以看出，这个概率上界过于保守，保守的原因在于，这里的假设是这$M$个bad events之间没有重合。
 所谓的bad event是指样本内误差和样本外误差超出$\epsilon$：
 $$ \left|E_{\mathrm{in}}\left(h_{m}\right)-E_{\mathrm{out}}\left(h_{m}\right)\right|>\epsilon $$
 
-而联合上界为：$$ \begin{aligned} \mathbb{P}\left[\mathcal{B}_{1} \text { or } \mathcal{B}_{2} \text { or } \cdots\right.&\left.\text { or } \mathcal{B}_{M}\right] \\ & \leq \underbrace{\mathbb{P}\left[\mathcal{B}_{1}\right]+\mathbb{P}\left[\mathcal{B}_{2}\right]+\cdots+\mathbb{P}\left[\mathcal{B}_{M}\right]}_{\text {no overlaps } M \text { terms }} \end{aligned} $$
+而联合上界为：
+$$ \begin{aligned} \mathbb{P}\left[\mathcal{B}_{1} \text { or } \mathcal{B}_{2} \text { or } \cdots\right.&\left.\text { or } \mathcal{B}_{M}\right] \\ & \leq \underbrace{\mathbb{P}\left[\mathcal{B}_{1}\right]+\mathbb{P}\left[\mathcal{B}_{2}\right]+\cdots+\mathbb{P}\left[\mathcal{B}_{M}\right]}_{\text {no overlaps } M \text { terms }} \end{aligned} $$
 
 教授用一个例子解释了bad events之间的重合：
+
 <img src="https://raw.githubusercontent.com/C-Harlin/MarkDownPhotos/master/learning%20from%20data/lfd_5.png" width="50%" height="50%" >
+
 <img src="https://raw.githubusercontent.com/C-Harlin/MarkDownPhotos/master/learning%20from%20data/lfd_6.png" width="50%" height="50%" >
 
 图中的蓝线代表假设，它将数据集一分为二，其中与真实数据标签不符的部分就是误差，$E_{out}$是指被误判的那部分在整个数据中所占的比例，而$E_{in}$是指采样点中被误判的那部分占所的比例。
 
 对于另一个假设（图中绿线所示），其与第一种假设的误差明显有重合的部分（黄色部分）。
- <img src="https://raw.githubusercontent.com/C-Harlin/MarkDownPhotos/master/learning%20from%20data/lfd_7.png" width=30%>  
+ <img src="https://raw.githubusercontent.com/C-Harlin/MarkDownPhotos/master/learning%20from%20data/lfd_7.png" width="30%">  
  所以$M$是有机会被替换掉的。
- 
+
  为了替换掉$M$，这里不再考虑整个输入空间，而是只考虑有限的输入点，计算这些点的$dichotomies$。下面又是一个形象的例子：
-<img src="https://raw.githubusercontent.com/C-Harlin/MarkDownPhotos/master/learning%20from%20data/lfd_8.png" width=50%>
+<img src="https://raw.githubusercontent.com/C-Harlin/MarkDownPhotos/master/learning%20from%20data/lfd_8.png" width="50%">
 
 左上角的红蓝区域代表当前假设（那根直线）对输入空间的判别，但这是不可见的，因为我们无法获知整个输入空间。右上角图片可以想象成一张被打了若干个小孔的纸，叠在左上角图片上后可以透过小孔观察到小孔所属的颜色，即假设对采样点的判别。当选择不同假设时，这些采样点就会有不同的颜色。
 
 
 $dichotomy$的本意是“二分”，一些点会被判定为红色，另一些点会被判定为蓝色，这样的一个划分情况被称为一个$dichotomy$。
-<img src="https://raw.githubusercontent.com/C-Harlin/MarkDownPhotos/master/learning%20from%20data/lfd_9.png" width=50%>
+<img src="https://raw.githubusercontent.com/C-Harlin/MarkDownPhotos/master/learning%20from%20data/lfd_9.png" width="50%">
 
 虽然$|\mathcal{H}|$是无限的，但当无限的假设作用到有限的采样点上时，必然有很多假设会得到相同的结果，即$dichotomy$的数量有限，最多为$2^{N}$。
 
 ### Growth function
 生长函数的作用是，给定数量$N$，你来确定这$N$个数据点应该放在哪些位置上，使得在当前的假设集合下，得到的$dichotomy$的数量最大，并返回这个最大值。它既与假设集有关，也与数据量$N$有关。（dichotomy的数量肯定最多是$2^N$，因为存在一些划分情况是假设集无法做到的）
-<img src="https://raw.githubusercontent.com/C-Harlin/MarkDownPhotos/master/learning%20from%20data/lfd_10.png" width=50%>
+<img src="https://raw.githubusercontent.com/C-Harlin/MarkDownPhotos/master/learning%20from%20data/lfd_10.png" width="50%">
 从无限到$2^{N}$，虽然数值依然很大，但至少是一个改进。
 
 通过下图这一简单的例子，可以更形象地理解生长函数。
