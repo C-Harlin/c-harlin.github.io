@@ -81,25 +81,30 @@ $$ \begin{aligned} \mathbb{P}\left[\mathcal{B}_{1} \text { or } \mathcal{B}_{2} 
 所以$M$是有机会被替换掉的。
 
  为了替换掉$M$，这里不再考虑整个输入空间，而是只考虑有限的输入点，计算这些点的$dichotomies$。下面又是一个形象的例子：
+ <center>
 <img src="https://raw.githubusercontent.com/C-Harlin/MarkDownPhotos/master/learning%20from%20data/lfd_8.png" width="50%">
-
+</center>
 左上角的红蓝区域代表当前假设（那根直线）对输入空间的判别，但这是不可见的，因为我们无法获知整个输入空间。右上角图片可以想象成一张被打了若干个小孔的纸，叠在左上角图片上后可以透过小孔观察到小孔所属的颜色，即假设对采样点的判别。当选择不同假设时，这些采样点就会有不同的颜色。
 
-
 $dichotomy$的本意是“二分”，一些点会被判定为红色，另一些点会被判定为蓝色，这样的一个划分情况被称为一个$dichotomy$。
+<center>
 <img src="https://raw.githubusercontent.com/C-Harlin/MarkDownPhotos/master/learning%20from%20data/lfd_9.png" width="50%">
-
+</center>
 虽然$\|\mathcal{H}\|$是无限的，但当无限的假设作用到有限的采样点上时，必然有很多假设会得到相同的结果，即$dichotomy$的数量有限，最多为$2^{N}$。
 
 ### Growth function
 生长函数的作用是，给定数量$N$，你来确定这$N$个数据点应该放在哪些位置上，使得在当前的假设集合下，得到的$dichotomy$的数量最大，并返回这个最大值。它既与假设集有关，也与数据量$N$有关。（dichotomy的数量肯定最多是$2^N$，因为存在一些划分情况是假设集无法做到的）
+<center>
 <img src="https://raw.githubusercontent.com/C-Harlin/MarkDownPhotos/master/learning%20from%20data/lfd_10.png" width="50%">
+</center>
 从无限到$2^{N}$，虽然数值依然很大，但至少是一个改进。
 
 通过下图这一简单的例子，可以更形象地理解生长函数。
 
 中间的小图选择的点位只能使得$dichotomy=6$，但我们对此并不关心，因为生长函数要的是最大值，即左图中的情况。
+<center>
 <img src="https://raw.githubusercontent.com/C-Harlin/MarkDownPhotos/master/learning%20from%20data/lfd_11.png" width="50%">
+</center>
 $N=4$时，数起来稍微麻烦了点，好在能数出来。但如果$N$的值更大了怎么办？
 
 教授给出三个生长函数的实例，在这些例子中，目的都是使得$dichotomy$在当前假设集和数据量的前提下达到最大。
@@ -107,7 +112,9 @@ $N=4$时，数起来稍微麻烦了点，好在能数出来。但如果$N$的值
 以第三个例子为例，任选$k$个点，在这$k$个点组成的$convex$多边形包围内的所有点都预测$+1$，否则预测$-1$。为了使得$dichotomy$最大，将$N$个数据点围成一个圈，则这N个点的任意一种排列组合都能成为一个$dichotomy$，因此$Convex Sets$的生长函数为：$m_{\mathcal{H}(N)}=2^{N}$
 
 回到我们最初的目的，是希望找到$M$的替代。
+<center>
 <img src="https://raw.githubusercontent.com/C-Harlin/MarkDownPhotos/master/learning%20from%20data/lfd_12.png" width="50%">
+</center>
 如果用生长函数来替代，由于生长函数恰好是多项式形式（polynomial），那么只要数据足够多，一定可以在概率上满足任意误差的学习。
 
 当然，到底能不能替换要留在下节课说明。
@@ -128,12 +135,16 @@ break point是一个数值，其的直观含义是，假设集不能再将给定
 
 
 有了上述定义后，可以很方便地推出前面讲过的三个生长函数的break point。
+<center>
 <img src="https://raw.githubusercontent.com/C-Harlin/MarkDownPhotos/master/learning%20from%20data/lfd_13.png " width="50%">
+</center>
 值得注意到是convex sets这个例子，对于任意数量的点，生长函数都能将其打散，所以它的break point是无穷。
 
 
 进而有了以下两个结果：
+
 $$ \text { No break point } \Longrightarrow m_{\mathcal{H}}(N)=2^{N} $$（这是定义)
+
 $$ \text { Any break point } \Longrightarrow m_{\mathcal{H}}(N) \text { is polynomial in } N $$（即只要有break point，$m_{\mathcal{H}}(N)$就是N的多项式，这意味着可以学习）
 
 ### 小结
@@ -183,9 +194,13 @@ A:no，通常是直接或间接估计的。
 
 
 （图中的$S_2$表示那些$x_1,x_2,\ldots,x_{N-1}$的值相同，但$x_N$的值既有$-1$也有$+1$的$dichotomy$；$S_1$与之相反）
+<center>
 <img src="https://raw.githubusercontent.com/C-Harlin/MarkDownPhotos/master/learning%20from%20data/lfd_14.png" width="50%">
+</center>
 然后既可以从图中归纳出$B(N,k)$的上界，也可以进一步得到$B(N,k)$上界的解析表达式。
+<center>
 <img src="https://raw.githubusercontent.com/C-Harlin/MarkDownPhotos/master/learning%20from%20data/lfd_15.png" width="50%">
+</center>
 最终有如下结论：
 
 
@@ -196,6 +211,7 @@ A:no，通常是直接或间接估计的。
 教授说严谨的证明有6页之多，但有必要解释清楚其中的一些关键，以便于理解详细的证明。
 
 需要解释清楚三件事：
+
 <img src="https://raw.githubusercontent.com/C-Harlin/MarkDownPhotos/master/learning%20from%20data/lfd_16.png" width="50%">
 一是，我们知道$M$是假设没有重合，但生长函数是怎么和重合扯上关系的呢？
 <!--我们知道用M会有重合，而生长函数比较小，他能处理重合的问题，但具体是怎么和重合扯上关系的呢？51:24开始讲解-->
@@ -207,6 +223,7 @@ A:no，通常是直接或间接估计的。
 
 
 通过这张图可以形象地理解：
+
 <img src="https://raw.githubusercontent.com/C-Harlin/MarkDownPhotos/master/learning%20from%20data/lfd_17.png" width="50%">
 图(a)的长方形表示整个数据空间，其中的点表示采样数据（$x_1,x_2,\cdots,x_N$）。如果当前假设在这个点上表现为bad event，则被涂成红色。由Hoeffding不等式保证bad events的区域（图(a)中的红色区域）较小。
 
@@ -226,9 +243,11 @@ A:no，通常是直接或间接估计的。
 具体来说，Hoeffding之所以会变得如此松弛，是因为我们使用了多个假设（不同的假设对应着不同的罐子），并给出最差的那个需要满足的上界。现在换一个思路，如果只从一个罐子中两次采样，我们有理由相信这两次采样数据之间的经验误差是有联系的（比如我们对3000人做民调，再对另外不同的3000人做民调，我们有理由相信两次结果在很大概率上相近），这种联系很像只做一次采样的经验误差和泛化误差的那种联系。
 但是需要知道的是，一旦我们换成这种多次采样的思路，那么数据就从整个数据空间变到了有限点集上，而有限点集就能用$dichotomy$来处理。
 这是阅读详细证明需要知道的一点。
+
 <img src="https://raw.githubusercontent.com/C-Harlin/MarkDownPhotos/master/learning%20from%20data/lfd_18.png" width="50%">
 
 最后是将两点组合到一起：
+
 <img src="https://raw.githubusercontent.com/C-Harlin/MarkDownPhotos/master/learning%20from%20data/lfd_19.png" width="50%">
 图中的第一个公式是“not quite”的，因为用$m_{\mathcal{H}}(N)$替换$M$的想法是没问题的，但具体换的时候要对细节的地方做修改，于是就有了第二个式子。
 
@@ -238,7 +257,9 @@ A:no，通常是直接或间接估计的。
 数值上等于$break point-1$（假设这个数量为n，不是说对所有n个点的数据集都能打散，而是至少有一组数据集能够打散），教授解释VC维和break point的区别仅在于一个是从正面描述最多能打散的数量，另一个是从反面描述达到多少之后就不能打散了。
 
 然后证明了感知机的VC维等于其参数的个数，并解释对于感知机而言，参数的个数可以代表自由度，并举了一个特例来说明VC维的数量度量的是有效参数的个数。
+
 <img src="https://raw.githubusercontent.com/C-Harlin/MarkDownPhotos/master/learning%20from%20data/lfd_20.png" width="50%">
+
 对于较复杂的模型来说，确定VC维是件困难的事情，但可以通过模型的自由度来近似得到VC维的上界。这也就是为什么对神经网络而言，通常取$d(\mathrm{VC})=O(\mathrm{VD})$。
 
 回到VC不等式来研究样本数量$N$随$d_{\mathrm{VC}}$的变化。
@@ -249,7 +270,9 @@ A:no，通常是直接或间接估计的。
 $$ m_{\mathcal{H}}(N)\leq \left(\frac{eN}{d}\right)^d $$
 
 最后给出了泛化界：
+
 <img src="https://raw.githubusercontent.com/C-Harlin/MarkDownPhotos/master/learning%20from%20data/lfd_21.png" width="50%">
+
 <img src="https://raw.githubusercontent.com/C-Harlin/MarkDownPhotos/master/learning%20from%20data/lfd_22.png" width="50%">
 
 
