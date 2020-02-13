@@ -34,7 +34,7 @@ timezone: Asia/Shanghai # see https://en.wikipedia.org/wiki/List_of_tz_database_
 ##############################
 author:
   type      : # "person" (default), "organization"
-  name      : harlin
+  name      : Harlin
   url       :
   avatar    : https://raw.githubusercontent.com/C-Harlin/MarkDownPhotos/master/dog.jpg # path or url of avatar image (square)
   bio       : # I am an amazing person.
@@ -61,9 +61,9 @@ repository_tree: master
 ## => Paths
 ##############################
 paths:
-  root    : # title link url, "/" (default)
-  home    : # home layout url, "/" (default)
-  archive : # "/archive.html" (default)
+  root    : / # title link url, "/" (default)
+  home    : / # home layout url, "/" (default)
+  archive : /archive.html # "/archive.html" (default)
   rss     : # "/feed.xml" (default)
 
 
