@@ -117,7 +117,7 @@ sharing:
 comments:
   provider: disqus
   disqus:
-    shortname: kitian616-github-io # the Disqus shortname for the site
+    shortname: https-c-harlin-github-io # the Disqus shortname for the site
 
 ## => Pageview
 ##############################
