@@ -198,3 +198,6 @@ plugins:
   - jekyll-paginate
   - jekyll-sitemap
   - jemoji
+
+gems:
+  - jekyll-sitemap
