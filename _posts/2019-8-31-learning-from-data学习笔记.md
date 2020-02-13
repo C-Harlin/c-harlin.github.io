@@ -1,10 +1,12 @@
 ---
+layout: article
 title: 可学习理论
 date: 2019-8-31 15:50:37
 categories: 
 - 学习笔记
 tags: 
 - 机器学习
+- 学习笔记
 type: "picture"
 mathjax: true
 ---

@@ -1,4 +1,5 @@
 ---
+layout: article
 title: Deep Residual Learning for Image Recognition 译文/中文版
 date: 2018-06-07 22:18:31
 categories: 
@@ -10,6 +11,7 @@ tags:
 &emsp;&emsp;作为一个刚刚接触深度学习的新人，残差网络给我留下了非常深的印象。  
 &emsp;&emsp;适逢学校对于毕业设计要求翻译一篇外文文献，抱着致敬经典的心情，特此翻译该文章。  
 <!-- more -->
+
 &emsp;&emsp;网上所能找到的两篇译文中，有一篇翻译得还不错，不过中间有不少地方进行了意译；另一篇就比较糟糕了，像是机器翻译的结果。  
 &emsp;&emsp;本文在这两篇翻译的基础上，对全文进行了翻译。
 
