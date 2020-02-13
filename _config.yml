@@ -12,8 +12,6 @@
 #    `--'   `----''--'   '--' `--'
 
 
-encoding: UTF-8
-
 ## => Site Settings
 ##############################
 text_skin: default # "default" (default), "dark", "forest", "ocean", "chocolate", "orange"
