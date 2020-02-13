@@ -55,7 +55,8 @@ $$ \mathbb{P}\left[\left|E_{\mathrm{in}}-E_{\mathrm{out}}\right|>\epsilon\right]
  <img src="https://raw.githubusercontent.com/C-Harlin/MarkDownPhotos/master/learning%20from%20data/lfd_4.png" width="80%" height="80%">
 
 目前我们已经知道了，学习是可行的，即：$$ E_{in}(g)\approx E_{out}(g) $$。
-但这还不够。我们期望的是$g\approx f$，即：$$ E_{out}(g)\approx 0 $$
+
+但这还不够，我们期望的是$g\approx f$，即：$$ E_{out}(g)\approx 0 $$
 
 ## 第五课
 从考虑了多种假设的Hoeffding不等式可以看出，这个概率上界过于保守，保守的原因在于，这里的假设是这$M$个bad events之间没有重合。
@@ -63,19 +64,22 @@ $$ \mathbb{P}\left[\left|E_{\mathrm{in}}-E_{\mathrm{out}}\right|>\epsilon\right]
 $$ \left|E_{\mathrm{in}}\left(h_{m}\right)-E_{\mathrm{out}}\left(h_{m}\right)\right|>\epsilon $$
 
 而联合上界为：
+
 $$ \begin{aligned} \mathbb{P}\left[\mathcal{B}_{1} \text { or } \mathcal{B}_{2} \text { or } \cdots\right.&\left.\text { or } \mathcal{B}_{M}\right] \\ & \leq \underbrace{\mathbb{P}\left[\mathcal{B}_{1}\right]+\mathbb{P}\left[\mathcal{B}_{2}\right]+\cdots+\mathbb{P}\left[\mathcal{B}_{M}\right]}_{\text {no overlaps } M \text { terms }} \end{aligned} $$
 
 教授用一个例子解释了bad events之间的重合：
 
-<img src="https://raw.githubusercontent.com/C-Harlin/MarkDownPhotos/master/learning%20from%20data/lfd_5.png" width="50%" height="50%" >
-
-<img src="https://raw.githubusercontent.com/C-Harlin/MarkDownPhotos/master/learning%20from%20data/lfd_6.png" width="50%" height="50%" >
+<img src="https://raw.githubusercontent.com/C-Harlin/MarkDownPhotos/master/learning%20from%20data/lfd_5.png" width="30%" height="30%" >
+<img src="https://raw.githubusercontent.com/C-Harlin/MarkDownPhotos/master/learning%20from%20data/lfd_6.png" width="30%" height="30%" >
 
 图中的蓝线代表假设，它将数据集一分为二，其中与真实数据标签不符的部分就是误差，$E_{out}$是指被误判的那部分在整个数据中所占的比例，而$E_{in}$是指采样点中被误判的那部分占所的比例。
 
 对于另一个假设（图中绿线所示），其与第一种假设的误差明显有重合的部分（黄色部分）。
- <img src="https://raw.githubusercontent.com/C-Harlin/MarkDownPhotos/master/learning%20from%20data/lfd_7.png" width="30%">  
- 所以$M$是有机会被替换掉的。
+ <img src="https://raw.githubusercontent.com/C-Harlin/MarkDownPhotos/master/learning%20from%20data/lfd_7.png" width="30%"> 
+ <center>
+ ![haha](https://raw.githubusercontent.com/C-Harlin/MarkDownPhotos/master/learning%20from%20data/lfd_7.png)
+</center>
+所以$M$是有机会被替换掉的。
 
  为了替换掉$M$，这里不再考虑整个输入空间，而是只考虑有限的输入点，计算这些点的$dichotomies$。下面又是一个形象的例子：
 <img src="https://raw.githubusercontent.com/C-Harlin/MarkDownPhotos/master/learning%20from%20data/lfd_8.png" width="50%">
