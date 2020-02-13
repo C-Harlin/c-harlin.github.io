@@ -6,6 +6,7 @@ categories:
 - 技术
 tags: 
 - 机器学习
+key: comment
 ---
 
 &emsp;&emsp;作为一个刚刚接触深度学习的新人，残差网络给我留下了非常深的印象。  

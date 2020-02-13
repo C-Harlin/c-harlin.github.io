@@ -9,6 +9,7 @@ tags:
 - 学习笔记
 type: "picture"
 mathjax: true
+key: comment
 ---
 我在夏季学期选修了《统计机器学习理论》，虽然课程只上了短短一周，但却令我耳目一新，越上越觉得有趣，捧起Vapnik那本《统计学习理论的本质》也看得津津有味。课程最后要求就自己感兴趣的部分写一份调研报告，在查阅资料的过程中偶然发现了Caltech的一门课：[Learning From Data](http://work.caltech.edu/telecourse.html)，前7课讲的恰好是统计学习理论。老爷子讲得很生动形象，强烈推荐。在此对这部分课程做一梳理总结。
 <!--more-->
