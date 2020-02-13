@@ -33,7 +33,7 @@ timezone: Asia/Shanghai # see https://en.wikipedia.org/wiki/List_of_tz_database_
 author:
   type      : # "person" (default), "organization"
   name      : Harlin
-  url       :
+  url       : https://c-harlin.github.io
   avatar    : https://raw.githubusercontent.com/C-Harlin/MarkDownPhotos/master/dog.jpg # path or url of avatar image (square)
   bio       : # I am an amazing person.
   email     : harlingcao@163.com
@@ -117,7 +117,7 @@ sharing:
 comments:
   provider: disqus
   disqus:
-    shortname: https-c-harlin-github-io # the Disqus shortname for the site
+    shortname: harlinc # the Disqus shortname for the site
 
 ## => Pageview
 ##############################
