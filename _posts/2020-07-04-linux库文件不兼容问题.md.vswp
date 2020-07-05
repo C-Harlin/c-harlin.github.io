@@ -1,6 +1,7 @@
 vnote_backup_file_826537664 /home/harlin/Blog/c-harlin.github.io/_posts/2020-07-04-linux库文件不兼容问题.md
 ---
 layout: articles
+type: normal
 articles:
   excerpt_type: html
 title: 解决Linux中依赖库文件版本过低的问题
@@ -22,8 +23,7 @@ pageview: true
 </center>
 <!--more-->
 ## 背景
-![Image](https://hackernoon.com/hn-images/1*8GQWP9Itkt6zELk7qexnfA.png =100x20){:.rpund}
-![Image](https://hackernoon.com/hn-images/1*8GQWP9Itkt6zELk7qexnfA.png){width=50%}
+![Image](https://hackernoon.com/hn-images/1*8GQWP9Itkt6zELk7qexnfA.png =200x100){:.round}
 
 一直以来我都使用[SendAnywhere](https://aur.archlinux.org/packages/sendanywhere/)（一款很好用的跨平台文件传输软件）跨越不同的设备来传输文件。后来有一次随着pango版本更新到1.44后，SendAnywhere就再也无法启动了。原因是SendAnywhere依赖低于1.44版本的pango库文件。这时候最理想的解决办法应该是SendAnywhere也随之做出更新，但谁让Linux用户太小众，开发商愿意做出Linux版本的软件就已经很善良了，保持更新的确要求过高了。
 
@@ -92,8 +92,7 @@ lrwxrwxrwx 1 root root   24  2月 11 11:20 /usr/lib/libpango-1.0.so.0 -> libpang
 所以Linux软件依赖库文件不兼容问题很好解决，只要有旧版兼容的库文件，然后再设置好库文件的搜索路径即可。
 
 沿着这个思路，还可以这么做：
-1. 直接在终端中通过`LD_LIBRARY_PATH=/path/to/old/lib /path/to/app`启动应用
-
+1. 直接在终端中通过`LD_LIBRARY_PATH=/path/to/old/lib /path/to/app`启动应用。
 第一个路径是旧版本库文件的位置，第二个路径是应用位置。其含义是让应用启动时加载指定的旧版库文件，即搜索**LD_LIBRARY_PATH**的情况；
 2. 在程序的安装路径中创建**/lib**文件夹，再将旧版库文件文件放入其中，就可直接启动应用，这里应该也是共享库文件写在了**rpath**中的情况；
 3. 稍微麻烦一些，将旧版库文件放入缺省搜索路径中，如**/usr/lib**，然后将库文件的realname与程序的soname建立链接。
