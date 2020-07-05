@@ -1,16 +1,14 @@
 vnote_backup_file_826537664 /home/harlin/Blog/c-harlin.github.io/_posts/2020-07-04-linux库文件不兼容问题.md
 ---
-layout: page
+layout: article
 articles:
-  type: normal
-  excerpt_type: text
+  excerpt_type: html
 title: 解决Linux中依赖库文件版本过低的问题
 date: 2020-07-04 14:55:11
 categories: 
 - 学习笔记
 tags: 
 - Linux
-- 学习笔记
 comment: true
 key: page-about
 ---
