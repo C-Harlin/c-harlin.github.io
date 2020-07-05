@@ -1,3 +1,4 @@
+vnote_backup_file_826537664 /home/harlin/Blog/c-harlin.github.io/_posts/2020-07-04-linux库文件不兼容问题.md
 ---
 layout: article
 articles:
@@ -15,7 +16,7 @@ key: page-about
 </center>
 <!--more-->
 ## 背景
-<font color=#008000>我是绿色</font>
+<font color=#008000>我是绿色</font>	
 一直以来我都使用[SendAnywhere](https://aur.archlinux.org/packages/sendanywhere/)（一款很好用的跨平台文件传输软件）跨越不同的设备来传输文件。后来有一次随着pango版本更新到1.44后，SendAnywhere就再也无法启动了。原因是SendAnywhere依赖低于1.44版本的pango库文件。这时候最理想的解决办法应该是SendAnywhere也随之做出更新，但谁让Linux用户太小众，开发商愿意做出Linux版本的软件就已经很善良了，保持更新的确要求过高了。
 
 一开始我选择了一个最直接的办法——降级pango——简单却一点都不优雅，因为还有许多其他的软件依赖新版本的pango，降级难免埋下一些潜在的问题。后来参考了SendAnywhere的package page（这里就要吹一波arch的文档和社区之完整了，用户可以就软件出现的问题在软件的package page下留言讨论），有人找到了导致该bug的关键库文件，修改了PKGBUILD文件，重新编译后解决问题。
