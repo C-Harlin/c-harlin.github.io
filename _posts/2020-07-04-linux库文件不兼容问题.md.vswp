@@ -1,6 +1,6 @@
 vnote_backup_file_826537664 /home/harlin/Blog/c-harlin.github.io/_posts/2020-07-04-linux库文件不兼容问题.md
 ---
-layout: home
+layout: article
 articles:
   excerpt_type: html
 title: 解决Linux中依赖库文件版本过低的问题
@@ -21,11 +21,13 @@ key: page-about
 </center>
 <!--more-->
 ## 背景
-一直以来我都使用[SendAnywhere](https://aur.archlinux.org/packages/sendanywhere/)（一款很好用的跨平台文件传输软件）跨越不同的设备来传输文件。后来有一次随着pango版本更新到1.44后，SendAnywhere就再也无法启动了。原因是SendAnywhere依赖的是pango低于1.44版本的库文件。这时候最理想的解决办法应该是SendAnywhere也随之做出更新，但谁让Linux用户太小众，开发商愿意做出Linux版本的软件就已经很善良了，更别提保持更新了。一开始我选择了一个最直接的办法——降级pango——简单却并不优雅，因为还有许多其他的软件依赖新版本的pango，降级难免埋下一些潜在的问题。再后来参考了SendAnywhere的package page（这里就要吹一波arch的文档和社区之完整了，用户可以就软件出现的问题在软件的package page下留言讨论），有人找到了导致该bug的关键库文件，修改了PKGBUILD文件，重新编译后解决问题。
+一直以来我都使用[SendAnywhere](https://aur.archlinux.org/packages/sendanywhere/)（一款很好用的跨平台文件传输软件）跨越不同的设备来传输文件。后来有一次随着pango版本更新到1.44后，SendAnywhere就再也无法启动了。原因是SendAnywhere依赖低于1.44版本的pango库文件。这时候最理想的解决办法应该是SendAnywhere也随之做出更新，但谁让Linux用户太小众，开发商愿意做出Linux版本的软件就已经很善良了，保持更新的确要求过高了。
 
-这是我遇到的第一次软件库文件不兼容的例子。虽然当时解决了问题，但其实并不是很理解背后的原理。这也就引出了昨天再一次遇到的类似问题。
+一开始我选择了一个最直接的办法——降级pango——简单却一点都不优雅，因为还有许多其他的软件依赖新版本的pango，降级难免埋下一些潜在的问题。后来参考了SendAnywhere的package page（这里就要吹一波arch的文档和社区之完整了，用户可以就软件出现的问题在软件的package page下留言讨论），有人找到了导致该bug的关键库文件，修改了PKGBUILD文件，重新编译后解决问题。
 
-这两天在写论文，看到有人推荐writefull这个工具，于是就想下载来用用。但启动应用后又遇到了pango不兼容的问题。第一反应是去package page看看有没有解决办法，总不能再去降级pango吧。但遗憾的是只看到有人遇到了同样的问题，却没人给出现成的解决办法。既然没有针对writefull这一bug的现成办法，那就去找找看别人都是怎么解决pango库文件不兼容的问题。幸运的是搜到了其他软件也因为pango更新而出现异常的问题。于是依葫芦画瓢再一次顺利解决了问题。
+这是我第一次遇到库文件不兼容的例子。虽然当时解决了问题，但其实并不是很理解背后的原理。这也就引出了昨天再一次遇到的类似问题——
+
+这两天在写论文，看到有人推荐writefull这个工具，于是就想下载来用用。但启动应用后又遇到了pango不兼容的问题。第一反应还是去package page看看有没有解决办法，总不能再去降级pango吧。但遗憾的是只看到有人遇到了同样的问题，却没人给出现成的解决办法。既然没有针对writefull这一bug的现成办法，那就去找找看别人都是怎么解决pango库文件不兼容的问题。幸运的是搜到了其他软件也因为pango更新而出现异常的问题。于是依葫芦画瓢再一次顺利解决了问题。
 
 不过这一次我没有得过且过。一方面是好奇为什么人家的方法能work，另一方面是不愿意再吃没知识的亏了，毕竟这样的问题已经出现两次了，事不过三，有必要把原理搞清楚。
 ## 共享函数库
