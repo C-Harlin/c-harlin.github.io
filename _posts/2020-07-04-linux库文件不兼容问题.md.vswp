@@ -21,7 +21,7 @@ key: page-about
 </center>
 <!--more-->
 ## 背景
-![Image](https://hackernoon.com/hn-images/1*8GQWP9Itkt6zELk7qexnfA.png){:.shadow}
+![Image](https://hackernoon.com/hn-images/1*8GQWP9Itkt6zELk7qexnfA.png =300x){:.shadow}
 一直以来我都使用[SendAnywhere](https://aur.archlinux.org/packages/sendanywhere/)（一款很好用的跨平台文件传输软件）跨越不同的设备来传输文件。后来有一次随着pango版本更新到1.44后，SendAnywhere就再也无法启动了。原因是SendAnywhere依赖低于1.44版本的pango库文件。这时候最理想的解决办法应该是SendAnywhere也随之做出更新，但谁让Linux用户太小众，开发商愿意做出Linux版本的软件就已经很善良了，保持更新的确要求过高了。
 
 一开始我选择了一个最直接的办法——降级pango——简单却一点都不优雅，因为还有许多其他的软件依赖新版本的pango，降级难免埋下一些潜在的问题。后来参考了SendAnywhere的package page（这里就要吹一波arch的文档和社区之完整了，用户可以就软件出现的问题在软件的package page下留言讨论），有人找到了导致该bug的关键库文件，修改了PKGBUILD文件，重新编译后解决问题。
@@ -92,9 +92,11 @@ lrwxrwxrwx 1 root root   24  2月 11 11:20 /usr/lib/libpango-1.0.so.0 -> libpang
 1. 直接在终端中通过`LD_LIBRARY_PATH=/path/to/old/lib /path/to/app`启动应用
 
 第一个路径是旧版本库文件的位置，第二个路径是应用位置。其含义是让应用启动时加载指定的旧版库文件，即搜索**LD_LIBRARY_PATH**的情况；
-2. 在程序的安装路径中创建**/lib**文件夹，再将旧版库文件文件放入其中，就可直接启动应用，这里应该也是共享库文件写在了rpath中的情况；
-3. 稍微麻烦一些，将旧版库文件放入缺省搜索路径中，如/usr/lib，然后将库文件的realname与程序的soname建立链接。
-
+2. 在程序的安装路径中创建**/lib**文件夹，再将旧版库文件文件放入其中，就可直接启动应用，这里应该也是共享库文件写在了**rpath**中的情况；
+3. 稍微麻烦一些，将旧版库文件放入缺省搜索路径中，如**/usr/lib**，然后将库文件的realname与程序的soname建立链接。
+<br>
+<br>
+<br>
 后来我赶紧注册了一个Arch User Repository的账号，把解决writefull依赖库不兼容的方法写到了comments里，为社区做一点微小的贡献：)
 ## 参考资料
 [1]. [Shared Libraries](http://tldp.org/HOWTO/Program-Library-HOWTO/shared-libraries.html) <br>
