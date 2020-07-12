@@ -201,3 +201,4 @@ plugins:
 
 gems:
   - jekyll-sitemap
+  - jekyll-feed
