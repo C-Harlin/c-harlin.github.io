@@ -50,4 +50,4 @@ header:
     url: /about.html
     
   - titles: RSS
-    url: /feed.html
+    url: /feed.xml
