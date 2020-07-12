@@ -49,5 +49,5 @@ header:
       # @end locale config
     url: /about.html
     
-  - titles: RSS
+  - title: RSS
     url: /feed.xml
