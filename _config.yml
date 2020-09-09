@@ -126,10 +126,10 @@ comments:
     #owner       : "C-Harlin"
     #admin: # Github repo owner and collaborators, only these guys can initialize github issues, IT IS A LIST.
     #  - "29478350"
-comment_gitalk_clientId: be4bef8856672e3c9260
-comment_gitalk_clientSecret: c93435323075732bcd6e3033619acef1b1a03569
-comment_gitalk_repo: gitalk-comment
-github_username: C-Harlin
+comment_gitalk_clientId: 'be4bef8856672e3c9260'
+comment_gitalk_clientSecret: 'c93435323075732bcd6e3033619acef1b1a03569'
+comment_gitalk_repo: 'gitalk-comment'
+github_username: 'C-Harlin'
 ## => Pageview
 ##############################
 pageview:
