@@ -118,6 +118,14 @@ comments:
   provider: disqus
   disqus:
     shortname: harlinc # the Disqus shortname for the site
+  provider: gitalk
+  gitalk:
+    clientID    : "be4bef8856672e3c9260"
+    clientSecret: "c93435323075732bcd6e3033619acef1b1a03569"
+    repository  : "gitalk-comment"
+    owner       : "C-Harlin"
+    admin: # Github repo owner and collaborators, only these guys can initialize github issues, IT IS A LIST.
+      - "29478350"
 
 ## => Pageview
 ##############################
